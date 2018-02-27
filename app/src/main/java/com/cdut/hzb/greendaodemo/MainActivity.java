@@ -3,7 +3,6 @@ package com.cdut.hzb.greendaodemo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -16,6 +15,7 @@ import com.cdut.hzb.greendaodemo.db.bean.StudentDao;
 import org.greenrobot.greendao.Property;
 import org.greenrobot.greendao.query.QueryBuilder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -46,10 +46,18 @@ public class MainActivity extends AppCompatActivity {
             Student student = new Student();
             student.setName(name);
 
-            long id = studentDao.insert(student);   // 插入一条数据
-            Student s = studentDao.load(id);  // 根据id查询一条数据
+//            long id = studentDao.insertOrReplace(student);   // 插入一条数据
+//            Student s = studentDao.load(id);  // 根据id查询一条数据
 
-            Log.d("debug", TAG + "  student = " + student + " s = " + s);
+//            Log.d("debug", TAG + "  student = " + student + " s = " + s);
+
+            Student student1 = new Student();
+            student1.setName("ehjfeow");
+
+            List<Student> lists = new ArrayList<>();
+            lists.add(student);
+            lists.add(student1);
+            studentDao.insertInTx(lists);
         }
     }
 
@@ -74,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         // 根据名字来排序
         QueryBuilder<Student> studentQueryBuilder = studentDao.queryBuilder();
         Property nameProperty = StudentDao.Properties.Name;
-        List<Student> ordersStudents = studentQueryBuilder.orderAsc(nameProperty).list();
+        List<Student> ordersStudents = studentQueryBuilder.orderAsc(nameProperty).limit(1).list();
 //        studentQueryBuilder.count();
 
 
