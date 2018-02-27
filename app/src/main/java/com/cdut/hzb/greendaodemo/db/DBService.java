@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.cdut.hzb.greendaodemo.db.bean.DaoMaster;
 import com.cdut.hzb.greendaodemo.db.bean.DaoSession;
+import com.cdut.hzb.greendaodemo.db.bean.StudentDao;
 
 /**
  * Created by hans on 2018/2/26 0026.
@@ -22,5 +23,9 @@ public class DBService {
         DaoMaster daoMaster = new DaoMaster(helper.getWritableDb());
 
         daoSession = daoMaster.newSession();
+    }
+
+    public StudentDao getStudentDao() {
+        return daoSession.getStudentDao();
     }
 }

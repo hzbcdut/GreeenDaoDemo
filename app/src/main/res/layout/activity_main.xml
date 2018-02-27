@@ -7,12 +7,26 @@
     tools:context="com.cdut.hzb.greendaodemo.MainActivity"
     android:orientation="vertical">
 
-    <Button
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="插入数据"/>
+        android:orientation="horizontal">
 
-    
+        <EditText
+            android:id="@+id/et"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="输入姓名"
+            android:layout_weight="1"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="插入数据"
+            android:onClick="insertData"/>
+
+    </LinearLayout>
+
+
 
 
 </LinearLayout>
