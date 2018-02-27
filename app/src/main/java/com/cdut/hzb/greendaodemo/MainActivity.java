@@ -113,6 +113,13 @@ public class MainActivity extends AppCompatActivity {
 
         for (Student studentS :  query.list()) {
             Log.i("debug_log", " studentS = " + studentS);
+
+            // 获取这个表关联的另一个表的数据时， 是懒加载？ 在调用getX()方法后才会返回数据。
+            List<Book> books = studentS.getBooks();
+            Log.i("debug_log", "  books = " + books);
+            for (Book book: books) {
+                Log.i("debug_log", " bookName = " + book.getBookName());
+            }
         }
     }
 
