@@ -37,11 +37,10 @@ public class MainActivity extends AppCompatActivity {
             Student student = new Student();
             student.setName(name);
 
-            long id = studentDao.insert(student);
-            Student s = studentDao.load(id);
+            long id = studentDao.insert(student);   // 插入一条数据
+            Student s = studentDao.load(id);  // 根据id查询一条数据
 
             Log.d("debug", TAG + "  student = " + student + " s = " + s);
-
         }
     }
 }
