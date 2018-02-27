@@ -17,6 +17,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    greendao {
+        schemaVersion 1
+        daoPackage 'com.cdut.hzb.greendaodemo.db.bean'
+    }
 }
 
 dependencies {

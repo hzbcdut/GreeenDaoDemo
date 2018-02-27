@@ -2,6 +2,9 @@ package com.cdut.hzb.greendaodemo.db;
 
 import android.content.Context;
 
+import com.cdut.hzb.greendaodemo.db.bean.DaoMaster;
+import com.cdut.hzb.greendaodemo.db.bean.DaoSession;
+
 /**
  * Created by hans on 2018/2/26 0026.
  *
