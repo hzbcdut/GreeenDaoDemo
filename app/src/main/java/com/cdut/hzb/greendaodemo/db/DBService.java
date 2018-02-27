@@ -2,6 +2,7 @@ package com.cdut.hzb.greendaodemo.db;
 
 import android.content.Context;
 
+import com.cdut.hzb.greendaodemo.db.bean.BookDao;
 import com.cdut.hzb.greendaodemo.db.bean.DaoMaster;
 import com.cdut.hzb.greendaodemo.db.bean.DaoSession;
 import com.cdut.hzb.greendaodemo.db.bean.StudentDao;
@@ -27,5 +28,9 @@ public class DBService {
 
     public StudentDao getStudentDao() {
         return daoSession.getStudentDao();
+    }
+
+    public BookDao getBookDao() {
+        return daoSession.getBookDao();
     }
 }

@@ -3,16 +3,20 @@ package com.cdut.hzb.greendaodemo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.cdut.hzb.greendaodemo.db.Book;
 import com.cdut.hzb.greendaodemo.db.DBService;
 import com.cdut.hzb.greendaodemo.db.ServiceFactory;
 import com.cdut.hzb.greendaodemo.db.Student;
+import com.cdut.hzb.greendaodemo.db.bean.BookDao;
 import com.cdut.hzb.greendaodemo.db.bean.StudentDao;
 
 import org.greenrobot.greendao.Property;
+import org.greenrobot.greendao.query.Query;
 import org.greenrobot.greendao.query.QueryBuilder;
 
 import java.util.ArrayList;
@@ -26,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView tv;
 
     private StudentDao studentDao;
+    private BookDao bookDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
 
         DBService dbService = ServiceFactory.getDbService();
         studentDao = dbService.getStudentDao();
+
+        bookDao = dbService.getBookDao();
     }
 
     public void insertData(View view) {
@@ -85,9 +92,28 @@ public class MainActivity extends AppCompatActivity {
         List<Student> ordersStudents = studentQueryBuilder.orderAsc(nameProperty).limit(1).list();
 //        studentQueryBuilder.count();
 
-
         return ordersStudents;
     }
 
+
+
+    public void queryDataMultiTable(View view) { // 多表关联查询
+        Book book1 = new Book(1101L, 110L, "哈利波特");
+        Book book2 = new Book(1102L, 110L, "哈哈");
+        Book book3 = new Book(1103L,110L, "死亡圣器");
+
+        bookDao.insertOrReplaceInTx(book1, book2, book3);  //使用事务插入或替换数据
+
+        Student student = new Student(110L, "huzhengbiao");
+//        student.setName("huzhengbiao");
+
+        studentDao.insertOrReplace(student);
+
+        Query<Student> query = studentDao.queryBuilder().where(StudentDao.Properties.Name.eq("huzhengbiao")).build();
+
+        for (Student studentS :  query.list()) {
+            Log.i("debug_log", " studentS = " + studentS);
+        }
+    }
 
 }

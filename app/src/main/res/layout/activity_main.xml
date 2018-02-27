@@ -32,6 +32,12 @@
         android:text="查询所有数据"
         android:onClick="queryAll"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="多表查询"
+        android:onClick="queryDataMultiTable"/>
+
     <TextView
         android:id="@+id/tv"
         android:layout_width="wrap_content"
